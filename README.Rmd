@@ -1,0 +1,45 @@
+---
+title: "OSSL paper analysis"
+output: 
+  github_document:
+    toc: true
+    toc_depth: 4
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+library("tidyverse")
+mnt.dir <- "~/projects/mnt-ossl/"
+```
+
+## Overview
+
+Analysis code fore generating outputs for the OSSL paper.
+
+The workspace development is defined by:
+
+- GitHub repository: [whrc/ossl-paper](https://github.com/whrc/ossl-paper)
+
+## Descriptive analysis
+
+Number of unique samples correctly imported into the OSSL per original source and spectra type.
+
+```{r table1, echo=FALSE}
+table1 <- read_csv("outputs/table1_source_and_spectra_count.csv", show_col_types = F) %>%
+  mutate()
+
+table1 %>%
+  knitr::kable()
+```
+
+Number of available samples for selected soil properties per spectra type and database subset.
+
+```{r table2, echo=FALSE}
+table2 <- read_csv("outputs/table2_soil_properties_count.csv", show_col_types = F) %>%
+  mutate()
+
+table2 %>%
+  knitr::kable()
+```
