@@ -28,7 +28,7 @@ Number of unique samples correctly imported into the OSSL per original source an
 
 ```{r table1, echo=FALSE}
 table1 <- read_csv("outputs/table1_source_and_spectra_count.csv", show_col_types = F) %>%
-  mutate()
+  replace_na(list(visnir = 0, mir = 0, nir = 0))
 
 table1 %>%
   knitr::kable()
@@ -37,9 +37,17 @@ table1 %>%
 Number of available samples for selected soil properties per spectra type and database subset.
 
 ```{r table2, echo=FALSE}
-table2 <- read_csv("outputs/table2_soil_properties_count.csv", show_col_types = F) %>%
-  mutate()
+table2 <- read_csv("outputs/table2_soil_properties_count.csv", show_col_types = F)
 
 table2 %>%
+  knitr::kable()
+```
+
+Performance from 10-fold cross-validation
+
+```{r table4, echo=FALSE}
+table4 <- read_csv("outputs/table4_10CV_performance.csv", show_col_types = F)
+
+table4 %>%
   knitr::kable()
 ```
