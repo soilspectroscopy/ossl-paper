@@ -1,6 +1,7 @@
 
 ## Packages
 library("tidyverse")
+library("cowplot")
 
 ## Data
 performance <- read_csv("https://github.com/soilspectroscopy/ossl-models/raw/main/out/fitted_models_performance_v1.2.csv")
@@ -95,26 +96,62 @@ performance.analysis <- performance %>%
                                                      "soil mesofauna",
                                                      "nematodes") ~ "Biological",
                                 TRUE ~ NA_character_),
+         soil_property_interest = case_when(soil_property == "oc_usda.c729_w.pct" ~ "oc_usda.c729_w.pct",
+                                            soil_property == "clay.tot_usda.a334_w.pct" ~ "clay.tot_usda.a334_w.pct",
+                                            soil_property == "ph.h2o_usda.a268_index" ~ "ph.h2o_usda.a268_index",
+                                            soil_property == "k.ext_usda.a725_cmolc.kg" ~ "k.ext_usda.a725_cmolc.kg",
+                                            TRUE ~ "Other"),
          .after = soil_property)
 
-ggplot(performance.analysis) +
+p.subset <- performance.analysis %>%
+  mutate(subset = factor(subset, levels = c("ossl", "kssl"))) %>%
+  ggplot() +
   geom_point(aes(x = rpiq, y = ccc, color = subset)) +
   geom_vline(xintercept = 2, linetype = 'dotted') +
-  geom_hline(yintercept = 0.6, linetype = 'dotted') +
-  labs(x = "RPIQ", y = "Lin's CCC", color = NULL) +
+  geom_hline(yintercept = 0.7, linetype = 'dotted') +
+  labs(x = "RPIQ", y = "Lin's CCC", color = "Subset:") +
+  scale_colour_manual(values = c("darkblue", "orange")) +
   theme_light() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom"); p.subset
 
-ggplot(performance.analysis) +
+p.spectra <- performance.analysis %>%
+  mutate(spectra = factor(spectra, levels = c("visnir", "mir", "nir.neospectra"))) %>%
+  ggplot() +
   geom_point(aes(x = rpiq, y = ccc, color = spectra)) +
   geom_vline(xintercept = 2, linetype = 'dotted') +
-  geom_hline(yintercept = 0.6, linetype = 'dotted') +
-  theme_light() + labs(color = NULL) +
-  theme(legend.position = "bottom")
+  geom_hline(yintercept = 0.7, linetype = 'dotted') +
+  labs(x = "RPIQ", y = "Lin's CCC", color = "Spectra:") +
+  scale_colour_manual(values = c("orange", "darkblue", "cyan")) +
+  theme_light() +
+  theme(legend.position = "bottom"); p.spectra
 
-ggplot(performance.analysis) +
+p.group <- performance.analysis %>%
+  mutate(soil_group = factor(soil_group, levels = c("Chemical", "Physical"))) %>%
+  ggplot() +
   geom_point(aes(x = rpiq, y = ccc, color = soil_group)) +
   geom_vline(xintercept = 2, linetype = 'dotted') +
-  geom_hline(yintercept = 0.6, linetype = 'dotted') +
-  theme_light() + labs(color = NULL) +
-  theme(legend.position = "bottom")
+  geom_hline(yintercept = 0.7, linetype = 'dotted') +
+  labs(x = "RPIQ", y = "Lin's CCC", color = "Category:") +
+  scale_colour_manual(values = c("darkblue", "orange")) +
+  theme_light() +
+  theme(legend.position = "bottom"); p.group
+
+p.soil <- performance.analysis %>%
+  mutate(soil_property_interest = factor(soil_property_interest,
+                                         levels = c("oc_usda.c729_w.pct", "clay.tot_usda.a334_w.pct",
+                                                    "ph.h2o_usda.a268_index", "k.ext_usda.a725_cmolc.kg",
+                                                    "Other"))) %>%
+  ggplot() +
+  geom_point(aes(x = rpiq, y = ccc, color = soil_property_interest)) +
+  geom_vline(xintercept = 2, linetype = 'dotted') +
+  geom_hline(yintercept = 0.7, linetype = 'dotted') +
+  labs(x = "RPIQ", y = "Lin's CCC", color = NULL) +
+  scale_colour_manual(values = c("red", "orange", "darkblue", "cyan", "gray50")) +
+  theme_light() +
+  theme(legend.position = "bottom") +
+  guides(color = guide_legend(nrow = 3)); p.soil
+
+p.perf <- plot_grid(p.subset, p.spectra, p.group, p.soil, nrow = 2, align = "hv", labels = "AUTO")
+
+ggsave("outputs/plot_10CV_performance.png", p.perf,
+       dpi = 300, width = 6, height = 6, units = "in", scale = 1.5)

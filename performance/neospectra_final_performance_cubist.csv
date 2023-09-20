@@ -1,0 +1,5 @@
+soil_property,spectra_type,subset_type,geo_type,n,rmse,bias,rsq,ccc,rpiq
+clay.tot_usda.a334_w.pct,nir.neospectra,ossl,na,90,14.21,2.769,0.467,0.594,1.715
+k.ext_usda.a725_cmolc.kg,nir.neospectra,ossl,na,80,0.298,0.021,0.199,0.429,1.007
+oc_usda.c729_w.pct,nir.neospectra,ossl,na,90,0.458,0.091,0.842,0.851,1.529
+ph.h2o_usda.a268_index,nir.neospectra,ossl,na,80,1.057,0.092,0.114,0.317,1.351
