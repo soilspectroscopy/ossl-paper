@@ -1,0 +1,13 @@
+model_type,soil_property,subset_type,test,n,rmse,bias,rsq,ccc,rpiq
+plsr,oc_usda.c729_w.pct,kssl,KSSL subset (n=162),162,0.381,-0.22,0.948,0.921,2.047
+plsr,oc_usda.c729_w.pct,kssl,Woodwell full (n=965),965,0.516,-0.263,0.919,0.859,1.357
+plsr,oc_usda.c729_w.pct,kssl,Woodwell subset (n=162),162,0.437,-0.179,0.921,0.902,1.786
+plsr,oc_usda.c729_w.pct,ossl,KSSL subset (n=162),162,0.358,-0.209,0.947,0.927,2.176
+plsr,oc_usda.c729_w.pct,ossl,Woodwell full (n=965),965,0.521,-0.29,0.925,0.857,1.344
+plsr,oc_usda.c729_w.pct,ossl,Woodwell subset (n=162),162,0.448,-0.218,0.923,0.897,1.74
+cubist,oc_usda.c729_w.pct,kssl,KSSL subset (n=162),162,0.268,-0.161,0.953,0.954,2.912
+cubist,oc_usda.c729_w.pct,kssl,Woodwell full (n=965),965,0.565,-0.36,0.883,0.826,1.24
+cubist,oc_usda.c729_w.pct,kssl,Woodwell subset (n=162),162,0.505,-0.317,0.907,0.87,1.545
+cubist,oc_usda.c729_w.pct,ossl,KSSL subset (n=162),162,0.221,-0.1,0.956,0.967,3.529
+cubist,oc_usda.c729_w.pct,ossl,Woodwell full (n=965),965,0.282,-0.104,0.939,0.944,2.481
+cubist,oc_usda.c729_w.pct,ossl,Woodwell subset (n=162),162,0.241,-0.059,0.939,0.962,3.241
