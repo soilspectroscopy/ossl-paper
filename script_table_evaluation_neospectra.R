@@ -17,3 +17,7 @@ results <- results %>%
   select(-spectra_type, -subset_type, -geo_type)
 
 print(xtable(results), include.rownames=FALSE)
+
+results %>%
+  group_by(model_type) %>%
+  summarise_if(is.numeric, mean)

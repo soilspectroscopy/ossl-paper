@@ -5,12 +5,18 @@ library("xtable")
 # Long term research (LTR) sites dataset
 
 performance <- read_csv("performance/ltr_performance_ossl_paper.csv", show_col_types = F)
+performance
+
+performance <- performance %>%
+  filter(test != "Woodwell full (n=965)") %>%
+  mutate(test = recode(test,
+                       "Woodwell subset (n=162)" = "Woodwell spectra",
+                       "KSSL subset (n=162)" = "KSSL spectra"))
 
 # Visualization
 
-selected.test <- c("Woodwell full (n=965)",
-                   "Woodwell subset (n=162)",
-                   "KSSL subset (n=162)")
+selected.test <- c("Woodwell spectra",
+                   "KSSL spectra")
 
 p.ltr.rmse <- performance %>%
   filter(test %in% selected.test) %>%
