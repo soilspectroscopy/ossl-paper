@@ -73,6 +73,9 @@ p.rank <- performance %>%
 ggsave("outputs/plot_rank_10CV.png", p.rank,
        width = 5, height = 5, units = "in", dpi = 300, scale = 1.5)
 
+ggsave("outputs/plot_rank_10CV.tiff", p.rank, compression = "lzw",
+       width = 5, height = 5, units = "in", dpi = 300, scale = 1.5)
+
 # Interpretation
 performance %>%
   filter(spectra_type == "mir" & trust == "no") %>%

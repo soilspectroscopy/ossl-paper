@@ -108,6 +108,10 @@ ggsave("outputs/plot_pca_scores_mir_ossl.png",
        p.mir.scores.pc1.pc2, dpi = 300, width = 8, height = 6,
        units = "in", scale = 0.75)
 
+ggsave("outputs/plot_pca_scores_mir_ossl.tiff", compression = "lzw",
+       p.mir.scores.pc1.pc2, dpi = 300, width = 8, height = 6,
+       units = "in", scale = 0.75)
+
 ############
 ## VisNIR ##
 ############
@@ -189,6 +193,9 @@ ggsave("outputs/plot_pca_scores_visnir_ossl.png",
        p.visnir.scores.pc1.pc2, dpi = 300, width = 8, height = 6,
        units = "in", scale = 0.75)
 
+ggsave("outputs/plot_pca_scores_visnir_ossl.tiff", compression = "lzw",
+       p.visnir.scores.pc1.pc2, dpi = 300, width = 8, height = 6,
+       units = "in", scale = 0.75)
 
 #####################
 ## NIR Nesospectra ##
@@ -249,5 +256,9 @@ p.nir.scores.pc1.pc2 <- nir.pca.scores %>%
   theme(legend.position = "bottom"); p.nir.scores.pc1.pc2
 
 ggsave("outputs/plot_pca_scores_nir_ossl.png",
+       p.nir.scores.pc1.pc2, dpi = 300, width = 8, height = 6,
+       units = "in", scale = 0.75)
+
+ggsave("outputs/plot_pca_scores_nir_ossl.tiff", compression = "lzw",
        p.nir.scores.pc1.pc2, dpi = 300, width = 8, height = 6,
        units = "in", scale = 0.75)

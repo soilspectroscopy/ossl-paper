@@ -96,3 +96,6 @@ p.ltr <- plot.data %>%
 
 ggsave("outputs/plot_ltr_conformal_prediction_ossl.png", p.ltr,
        width = 4.5, height = 3, units = "in", dpi = 300, scale = 1.5)
+
+ggsave("outputs/plot_ltr_conformal_prediction_ossl.tiff", p.ltr, compression = "lzw",
+       width = 4.5, height = 3, units = "in", dpi = 300, scale = 1.5)

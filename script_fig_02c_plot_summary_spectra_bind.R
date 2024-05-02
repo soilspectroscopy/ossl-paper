@@ -16,5 +16,6 @@ p.all <- plot_grid(mir.raw, mir.snv,
                    nir.raw, nir.snv,
                    ncol = 2, labels = "AUTO")
 
-ggsave("outputs/plot_spectra_all.png", p.all,
-       dpi = 300, width = 6, height = 7.2, scale = 1.5)
+ggsave("outputs/plot_spectra_all.tiff", p.all,
+       dpi = 300, width = 6, height = 7.2, scale = 1.5,
+       compression = "lzw")

@@ -174,3 +174,6 @@ p.spectra <- performance.analysis %>%
 
 ggsave("outputs/plot_10CV_performance.png", p.spectra,
        dpi = 300, width = 4, height = 3.5, units = "in", scale = 1.5)
+
+ggsave("outputs/plot_10CV_performance.tiff", p.spectra, compression = "lzw",
+       dpi = 300, width = 4, height = 3.5, units = "in", scale = 1.5)

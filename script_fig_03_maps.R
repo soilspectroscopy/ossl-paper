@@ -168,5 +168,5 @@ map2 <- cowplot::ggdraw() + cowplot::draw_image("outputs/ossl_points_mir.png")
 p.export <- plot_grid(map1, map2, ncol = 1, labels = "AUTO") +
   theme(panel.background = element_rect(fill = "white", colour = NA))
 
-ggsave("outputs/ossl_points.png", p.export,
+ggsave("outputs/ossl_points.tiff", p.export, compression = "lzw",
        dpi = 300, width = 5, height = 4, units = "in", scale = 1.5)

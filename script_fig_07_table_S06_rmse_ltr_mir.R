@@ -34,6 +34,9 @@ p.ltr.rmse <- performance %>%
 ggsave("outputs/plot_ltr_mir_organic_carbon.png", p.ltr.rmse,
        dpi = 300, width = 6, height = 5, units = "in", scale = 1)
 
+ggsave("outputs/plot_ltr_mir_organic_carbon.tiff", p.ltr.rmse, compression = "lzw",
+       dpi = 300, width = 6, height = 5, units = "in", scale = 1)
+
 ## Table
 performance %>%
   select(-soil_property) %>%
